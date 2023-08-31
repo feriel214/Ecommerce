@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <h6>Tables Des Produits</h6>
+          <div class="input-group mt-3">
+            <span class="input-group-text text-body "><i class="fas fa-search" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" placeholder="Rechercher Utilisateur ..." >
+          </div>
+          
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+          <div class="table-responsive p-0">
+            <div style="text-align: right;">
+              <a class="btn btn-success btn-sm w-20 mb-3 m-3 p-3" (click)="Addproduct()">Ajouter Produit</a>
+          </div>
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-right text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Produit Image</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Brand</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quantity</th>
+                  <th class="text-secondary opacity-7">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>
+                    <div class="d-flex px-2 py-1 ">
+                      <div>
+                        <img [src]="'http://127.0.0.1:9000/getimage/' + product.image" class="avatar avatar-lg ms-3" alt="product1">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{ product.title}}</p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <p class="text-xs font-weight-bold mb-0">{{ product.price}}</p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <p class="text-xs font-weight-bold mb-0">{{ product.category}}</p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <p class="text-xs font-weight-bold mb-0">{{ product.brand}}</p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <p class="text-xs font-weight-bold mb-0">{{ product.quantity}}</p>
+                  </td>
+                  <td class="align-middle text-center">
+                    <a (click)="editProduct(product._id)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit product">
+                      <i class="fas fa-pencil-alt text-primary"></i>
+                    </a>
+                    <a (click)="deleteProduct(product._id)" href="javascript:;" class="text-secondary font-weight-bold text-xs m-3" data-toggle="tooltip" data-original-title="Edit product">
+                      <i class="fas fa-trash text-danger"></i>
+  
+                    </a>
+                  </td>
+                  
+                </tr>
+             
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+ 

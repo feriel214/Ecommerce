@@ -1,0 +1,111 @@
+<app-header></app-header>
+<!-- Section de la Commande -->
+<section class="checkout spad">
+    <div class="container">
+     
+      <form action="#" class="checkout__form">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h5>Détails de la facturation</h5>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <p>Prénom <span>*</span></p>
+                                <input type="text" [(ngModel)]="order.firstName" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <p>Nom de famille <span>*</span></p>
+                                <input type="text" [(ngModel)]="order.lastName" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="checkout__form__input">
+                                <p>Pays <span>*</span></p>
+                                <input type="text" [(ngModel)]="order.shipmentDetails.country" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="checkout__form__input">
+                                <p>Adresse <span>*</span></p>
+                                <input type="text" placeholder="Adresse de rue" [(ngModel)]="order.shipmentDetails.address" [ngModelOptions]="{standalone: true}">
+                              
+                            </div>
+                            <div class="checkout__form__input">
+                                <p>Ville <span>*</span></p>
+                                <input type="text" [(ngModel)]="order.shipmentDetails.city" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="checkout__form__input">
+                                <p>Pays/État <span>*</span></p>
+                                <input type="text" [(ngModel)]="order.shipmentDetails.countryState" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="checkout__form__input">
+                                <p>Code postal <span>*</span></p>
+                                <input type="text" [(ngModel)]="order.shipmentDetails.postalCode" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <p>Téléphone <span>*</span></p>
+                                <input type="number" [(ngModel)]="order.phone" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <p>Email <span>*</span></p>
+                                <input type="text"  [(ngModel)]="order.email" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            
+                            <div class="checkout__form__input">
+                                <p>Notes de commande <span>*</span></p>
+                                <input type="text" [(ngModel)]="order.noteAboutOrder" [ngModelOptions]="{standalone: true}"
+                                    placeholder="Note concernant votre commande, par exemple une note spéciale pour la livraison">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout__order">
+                        <h5>Votre commande</h5>
+                        <div class="checkout__order__product">
+                            <ul>
+                                <li>
+                                    <span class="top__text">Produit</span>
+                                    <span class="top__text__right">Total</span>
+                                </li>
+                                <li *ngFor="let item of cartItems ; let i = index">0{{i+1}}. {{item.product.title}} <span>{{item.quantity*item.product.price}} DT</span></li>
+                              
+                            </ul>
+                        </div>
+                        <div class="checkout__order__total">
+                            <ul>
+                            
+                                <li>Total <span>{{total}} DT</span></li>
+                            </ul>
+                        </div>
+                        <div class="checkout__order__widget">
+                          
+                            <label for="check-payment">
+                                Paiement par chèque
+                                <input type="checkbox" id="check-payment" [checked]="order.paymentMethod.cheque" (change)="order.paymentMethod.cheque = !order.paymentMethod.cheque">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="paypal">
+                                Cash
+                                <input type="checkbox" id="paypal" [checked]="order.paymentMethod.cash" (change)="order.paymentMethod.cash = !order.paymentMethod.cash">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="site-btn" (click)="createOrder()">Passer la commande</button>
+                    </div>
+                </div>
+            </div>
+        </form> 
+      
+   
+   
+    </div>
+</section>
+<!-- Fin de la section de commande -->
+<app-footer></app-footer>

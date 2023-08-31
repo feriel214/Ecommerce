@@ -1,0 +1,49 @@
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center">
+              <p class="mb-0">Modifier Utilisateur</p>
+              <button class="btn btn-warning btn-sm ms-auto" (click)="addUser()">Ajouter</button>
+            </div>
+          </div>
+          <div class="card-body">
+           
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Nom</label>
+                  <input class="form-control" [(ngModel)]="user.firstName" type="text" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Email</label>
+                  <input class="form-control" [(ngModel)]="user.email" type="email" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Prénom</label>
+                  <input class="form-control" [(ngModel)]="user.lastName" type="text" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Mot de Passe</label>
+                  <input class="form-control"  [(ngModel)]="user.password" type="password" >
+                </div>
+              </div>
+            </div>
+     
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    <footer class="footer pt-3  ">
+     
+    </footer>
+</div>
+

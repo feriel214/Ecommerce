@@ -1,0 +1,78 @@
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center">
+              <p class="mb-0">Ajouter Produit</p>
+              <button class="btn btn-warning btn-sm ms-auto" type="submit" (click)="addProduct()">Ajouter</button>
+            </div>
+          </div>
+          <div class="card-body">
+           
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Titre</label>
+                  <input class="form-control" [(ngModel)]="product.title" type="text" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Slug</label>
+                  <input class="form-control" [(ngModel)]="product.slug" type="text" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Category</label>
+                  <select class="form-select" 
+                     [(ngModel)]="product.category" 
+                     name="category" required>
+                    <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Prix</label>
+                  <input class="form-control" [(ngModel)]="product.price" type="number" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Quantité</label>
+                  <input class="form-control"  [(ngModel)]="product.quantity" type="number" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Image</label>
+                  <input class="form-control"  (change)="selectFile($event)"  type="file" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Marque</label>
+                  <input class="form-control"  [(ngModel)]="product.brand" type="text" required>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Descreption</label>
+                  <textarea class="form-control"  [(ngModel)]="product.description" required></textarea>
+                </div>
+              </div>
+
+            </div>
+     
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    <footer class="footer pt-3  ">
+     
+    </footer>
+</div>
+

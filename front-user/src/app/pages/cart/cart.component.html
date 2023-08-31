@@ -1,0 +1,82 @@
+<app-header></app-header>
+  <!-- Breadcrumb Begin -->
+  <div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                    <span>Shopping cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Shop Cart Section Begin -->
+<section class="shop-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                                <th>Totale</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor=" let item of cartItems">
+                                <td class="cart__product__item">
+                                    <img [src]="'http://127.0.0.1:9000/getimage/' + item.product.image" alt="" width="150px" height="150px" class="img-thumbnail img-fluid">
+                                    <div class="cart__product__item__title">
+                                        <h6>{{item.product.title}}</h6>
+                                    </div>
+                                </td>
+                                <td class="cart__price">DT {{item.product.price}}</td>
+                                <td class="cart__quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" [value]="item.quantity" (change)="updateItemQuantity($event,item._id)">
+                                    </div>
+                                </td>
+                                <td class="cart__total">DT {{item.product.price*item.quantity}}</td>
+                                <td class="cart__close"><span class="icon_close" (click)="removeItemCart(item._id)"></span></td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="cart__btn">
+                    <a routerLink="/home">Continuer vos achats</a>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+              
+            </div>
+            <div class="col-lg-4 offset-lg-2">
+                <div class="cart__total__procced">
+                    <h6>Total du panier</h6>
+                    <ul>
+                        <li>Totale <span> {{total}} DT</span></li>
+                    </ul>
+                    <a routerLink="/checkout" class="primary-btn">Passer commande</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Cart Section End -->
+
+<app-footer></app-footer>
