@@ -12,13 +12,39 @@ export class ListUserComponent implements OnInit{
   
   users:any;
   filterText:any;
-
+  filteredUsers:any;
+  searchText='';
   constructor(private userService:UsersService, private router :Router){}
   ngOnInit(): void {
    this.getAllUsers();
 
   
   }
+
+
+getAllUsers(){
+  this.userService.getAllUsers()
+  .subscribe((res : any)=>{
+    console.log("all users",res.users)
+    this.users=res.users;
+    this.filteredUsers=res.users;
+  })
+
+}
+
+
+filterUsers() {
+  console.log("search",this.searchText)
+  this.filteredUsers = this.users.filter((user: any) => {
+    return (
+      (user.firstName && user.firstName.toLowerCase().includes(this.searchText.toLowerCase())) ||
+      (user.lastName && user.lastName.toLowerCase().includes(this.searchText.toLowerCase())) ||
+      (user.email && user.email.toLowerCase().includes(this.searchText.toLowerCase())) 
+    );
+  });
+}
+
+
 
  
   deleteUser(idUser:any){
@@ -46,14 +72,7 @@ export class ListUserComponent implements OnInit{
     })
   }
 
-  getAllUsers(){
-    this.userService.getAllUsers()
-    .subscribe((res : any)=>{
-      console.log("all users",res.users)
-      this.users=res.users;
-    })
-
-  }
+ 
 
   editUser(idUser: any) {
 

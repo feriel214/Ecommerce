@@ -9,8 +9,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list-product.component.css']
 })
 export class ListProductComponent implements OnInit {
-  
-  products:any;
+ 
+    searchText = '';
+    products:any;
+    filteredProducts :any;
+   
 
   constructor(private productService:ProductService, private router :Router){}
   ngOnInit(): void {
@@ -23,8 +26,27 @@ export class ListProductComponent implements OnInit {
      .subscribe((res:any)=>{
       console.log("res all products",res)
       this.products=res;
+  
+       this.filteredProducts =res;
+     
      })
   }
+
+  filterProducts() {
+    this.filteredProducts = this.products.filter((product: any) => {
+      return (
+        (product.title && product.title.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (typeof product.price === 'string' && product.price.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (product.category && product.category.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (product.brand && product.brand.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (typeof product.quantity === 'string' && product.quantity.toLowerCase().includes(this.searchText.toLowerCase()))
+      );
+    });
+  }
+  
+
+
+
 
   editProduct(idProduct : any){
     Swal.fire({
@@ -72,4 +94,8 @@ export class ListProductComponent implements OnInit {
   Addproduct(){
     this.router.navigate([`/dashboard/add/product`]);
   }
+
+
+ 
+  
 }

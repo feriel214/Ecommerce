@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+
+
 import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { ListUserComponent } from './components/users/list-user/list-user.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';

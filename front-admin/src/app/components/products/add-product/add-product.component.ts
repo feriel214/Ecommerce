@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/category.service';
 import { ProductService } from 'src/app/product.service';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent implements OnInit  {
    myFile: any;
    product = {
     title: '',
@@ -22,6 +23,7 @@ export class AddProductComponent implements OnInit {
     image: '',
   };
   categories:any;
+
   constructor(private productService:ProductService ,private categoryService :CategoryService, private router:Router){
 
   }
@@ -64,4 +66,8 @@ export class AddProductComponent implements OnInit {
       this.categories=res.categories;
     })
   }
+  
+
+
+  
 }
