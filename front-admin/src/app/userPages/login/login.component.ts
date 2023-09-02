@@ -57,6 +57,18 @@ export class LoginComponent {
           console.log('Sign-in successful:', data);
 
           if (data.success) {
+           if(data.user.role==1){
+              this.router.navigate(['/dashboard']);
+              Swal.fire({
+                icon: 'success',
+                title: 'Connexion réussie !',
+                text: `Bonjour ${data.user.firstName} ${data.user.lastName}`,
+              }).then(() => {
+                localStorage.setItem('token', data.token);
+                // Redirect to the dashboard page
+                this.router.navigate(['/dashboard/orders']);
+              });
+           }else if(data.user.role==2){
             this.router.navigate(['/dashboard']);
             Swal.fire({
               icon: 'success',
@@ -65,8 +77,15 @@ export class LoginComponent {
             }).then(() => {
               localStorage.setItem('token', data.token);
               // Redirect to the dashboard page
-              this.router.navigate(['/dashboard/orders']);
+              this.router.navigate(['/dashboardop/list/product']);
             });
+           }else{
+            Swal.fire({
+              icon: 'warning',
+              title: "Connexion n'est pas autorisé !",
+              text: `vous devez etre admin ou opérateur pour pouvouir connecter !!`,
+            })
+           }
           }
         },
         (error) => {

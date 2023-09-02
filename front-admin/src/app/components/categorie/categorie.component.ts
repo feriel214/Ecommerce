@@ -17,13 +17,33 @@ export class CategorieComponent implements OnInit {
   name:'',
   description:''
  }
+ searchText="";
+ filtredCategory:any;
   constructor(private categoryService:CategoryService ,private router: Router){
     
   }
   ngOnInit(): void {
    this.getAllCategories();
   }
-
+  getAllCategories(){
+    this.categoryService.getAllCategories()
+    .subscribe((res:any)=>{
+      console.log("res",res)
+      this.categories=res.categories;
+      this.filtredCategory=res.categories;
+    })
+  }
+  filterCategory(){
+    this.filtredCategory = this.categories.filter((categ: any) => {
+      const searchTextLowerCase = this.searchText.toLowerCase();
+  
+      return (
+        (categ.name && categ.name.toLowerCase().includes(searchTextLowerCase)) ||
+        (categ.description && categ.description .toLowerCase().includes(searchTextLowerCase)) 
+       
+      );
+    });
+  }
 
   AddCategory(){
     this.state=false;
@@ -120,11 +140,5 @@ export class CategorieComponent implements OnInit {
     
   }
 
-  getAllCategories(){
-    this.categoryService.getAllCategories()
-    .subscribe((res:any)=>{
-      console.log("res",res)
-      this.categories=res.categories;
-    })
-  }
+  
 }

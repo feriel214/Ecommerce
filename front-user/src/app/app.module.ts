@@ -12,13 +12,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { ContactComponent } from './pages/contact/contact.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StrikeComponent } from './strike/strike.component';
 import { ShopComponent } from './pages/shop/shop.component';
-import { BlogComponent } from './pages/blog/blog.component';
-import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,11 +28,8 @@ import { BlogDetailsComponent } from './pages/blog-details/blog-details.componen
     FooterComponent,
     CartComponent,
     CheckoutComponent,
-    ContactComponent,
     StrikeComponent,
-    ShopComponent,
-    BlogComponent,
-    BlogDetailsComponent
+    ShopComponent
   ],
   schemas: [NO_ERRORS_SCHEMA], 
   imports: [

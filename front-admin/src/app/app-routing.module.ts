@@ -14,6 +14,7 @@ import { EditProductComponent } from './components/products/edit-product/edit-pr
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrdersDetailsComponent } from './components/orders-details/orders-details.component';
+import { DashboardOpComponent } from './components/dashboard-op/dashboard-op.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -29,10 +30,20 @@ const routes: Routes = [
     {path:'edit/product/:id' , component: EditProductComponent},
     {path:'category' , component: CategorieComponent},
     {path:'orders',component:OrdersComponent},
-    {path:'order/details/:id',component:OrdersDetailsComponent}
+    {path:'order/details/:id',component:OrdersDetailsComponent},
+  
   ]
+
   },
+  {path:'dashboardop',component : DashboardOpComponent , canActivate: [AuthGuard],
+  children: [
+    {path:'add/product' ,component: AddProductComponent},
+    {path:'list/product' , component: ListProductComponent},
+    {path:'edit/product/:id' , component: EditProductComponent},
+    {path:'category' , component: CategorieComponent},
  
+  ]
+},
   {path:'**',component:NotfoundComponent}
 ];
 

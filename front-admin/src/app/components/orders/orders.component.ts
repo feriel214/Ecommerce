@@ -20,7 +20,9 @@ export class OrdersComponent  implements OnInit{
     'Delivered':"bg-gradient-primary"
   
 };
+  searchText='';
   orders:any;
+  filtredOrders:any
   constructor(private orderService:OrderService , private router:Router){
 
   }
@@ -28,12 +30,26 @@ export class OrdersComponent  implements OnInit{
     this.getAllOrders();
   }
 
+  filterOrders() {
+    this.filtredOrders = this.orders.filter((order: any) => {
+      const searchTextLowerCase = this.searchText.toLowerCase();
+  
+      return (
+        (order.user.firstName && order.user.firstName.toLowerCase().includes(searchTextLowerCase)) ||
+        (order.user.lastName && order.user.lastName.toLowerCase().includes(searchTextLowerCase)) ||
+        (order.user.email && order.user.email.toLowerCase().includes(searchTextLowerCase)) ||
+        (order.total && order.total.toString().includes(searchTextLowerCase)) || // Filter by total
+        (order.orderStatus && this.TranslatedStatus[order.orderStatus.indexOf(order.orderStatus)].toLowerCase().includes(searchTextLowerCase)) || // Filter by status
+        (order.createdAt && order.createdAt.toLowerCase().includes(searchTextLowerCase)) // Filter by created date
+      );
+    });
+  }
 
   getAllOrders(){
     this.orderService.getAllOrders()
     .subscribe((res:any)=>{
-      this.orders=res
-      console.log("**orders ",res)
+      this.orders=res;
+      this.filtredOrders=res;
     })
   }
 

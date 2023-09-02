@@ -20,7 +20,10 @@
               <h5 class="mb-1">
                 Liste Des Catégories
               </h5>
-             
+              <div class="input-group mt-3" style="margin-left:300px;">
+                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" style="width: 550px;" [(ngModel)]="searchText" (change)="filterCategory()" placeholder="Chercher une catégorie ">
+              </div>
             </div>
           </div>
          
@@ -88,7 +91,7 @@
                       </thead>
                       <tbody>
                        
-                        <tr *ngFor="let categ of categories">
+                        <tr *ngFor="let categ of filtredCategory">
                           <td>
                             <p class="text-xs font-weight-bold mb-0" >{{categ.name}}</p>
                           </td>

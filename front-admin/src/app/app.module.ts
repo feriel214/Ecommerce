@@ -24,6 +24,7 @@ import { ListProductComponent } from './components/products/list-product/list-pr
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrdersDetailsComponent } from './components/orders-details/orders-details.component';
+import { DashboardOpComponent } from './components/dashboard-op/dashboard-op.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { OrdersDetailsComponent } from './components/orders-details/orders-detai
     ListProductComponent,
     CategorieComponent,
     OrdersComponent,
-    OrdersDetailsComponent
+    OrdersDetailsComponent,
+    DashboardOpComponent
    
   ],
   imports: [
