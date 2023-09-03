@@ -49,7 +49,7 @@ const createProduct = asyncHandler(async (req, res) => {
   }
 });
 
-
+/*
 
 const updateProduct = asyncHandler(async (req, res) => {
   try {
@@ -104,8 +104,75 @@ const updateProduct = asyncHandler(async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
   }
-});
+});*/
 
+const updateProduct = asyncHandler(async (req, res) => {
+  try {
+    const uploadImage = (req, res, next) => {
+      const storage = multer.diskStorage({
+        destination: './upload',
+        filename: (req, file, cb) => {
+          const date = Date.now();
+          const fileExtension = file.originalname.split('.').pop();
+          const fileName = date + '.' + fileExtension;
+          cb(null, fileName);
+        }
+      });
+
+      const upload = multer({ storage }).single('image');
+
+      upload(req, res, (err) => {
+        if (err) {
+          console.error('Image upload failed:', err);
+          return res.status(400).json({ success: false, error: 'Image upload failed' });
+        }
+        console.log('File uploaded successfully:', req.file); // Log the uploaded file
+        next();
+      });
+    };
+
+    // Use the uploadImage middleware to handle file upload
+    uploadImage(req, res, async () => {
+      if (req.body.title) {
+        req.body.slug = slugify(req.body.title);
+      }
+
+      try {
+        const id = req.params.id;
+
+        // Check if a new image is uploaded
+        const newImage = req.file ? req.file.filename : undefined;
+
+        // Get the existing product to check its current image
+        const existingProduct = await Product.findOne({ _id: id });
+        const existingImage = existingProduct ? existingProduct.image : undefined;
+
+        const updatedProduct = await Product.findOneAndUpdate(
+          { _id: id },
+          {
+            $set: {
+              ...req.body,
+              image: newImage || existingImage, // Use the new image if available, otherwise keep the existing image
+            },
+          },
+          { new: true }
+        );
+
+        if (!updatedProduct) {
+          return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.json(updatedProduct);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
 
 
 

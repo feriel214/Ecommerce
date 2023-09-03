@@ -68,8 +68,13 @@ export class EditProductComponent implements OnInit {
     myFormData.append('category' , this.product.category );
     myFormData.append('brand' , this.product.brand );
     myFormData.append('quantity' , this.product.quantity.toString() );
-    myFormData.append('image', this.myFile);
-   
+    //myFormData.append('image', this.myFile);
+    // Check if a new file is selected
+    if (this.myFile) {
+      // If a new file is selected, append it
+      myFormData.append('image', this.myFile);
+    }
+
    
     this.productService.editProduct(this.id,myFormData)
     .subscribe((res : any )=>{

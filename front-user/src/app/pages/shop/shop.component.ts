@@ -11,19 +11,31 @@ export class ShopComponent  implements OnInit{
  
   categories: any[] = [];
   products: any[] = [];
+  searchText:any;
+  filteredProducts :any;
   ngOnInit(): void {
     this.getAllProducts();
     this.getAllCategories();
   }
   constructor(private shared:SharedService,private router:Router ){}
-
-
-
+  filterProducts() {
+    this.filteredProducts = this.products.filter((product: any) => {
+      return (
+        (product.title && product.title.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (typeof product.price === 'string' && product.price.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (product.category && product.category.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (product.brand && product.brand.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (typeof product.quantity === 'string' && product.quantity.toLowerCase().includes(this.searchText.toLowerCase()))
+      );
+    });
+  }
+  
 
   getAllProducts(){
     this.shared.getAllProducts()
     .subscribe((res:any)=>{
       this.products=res;
+      this.filteredProducts =res;
      })
   }
 
